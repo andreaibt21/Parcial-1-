@@ -180,7 +180,7 @@ int modificarUnContribuyente( estructuraContribuyente   array[], int tamano){
 
 	printf("\nDesea cambiar este legajo? \n");
 	printf(" ****************  DATOS PERSONALES a cambiar ***************** \n ");
-	printf("        NOMBRE      APELLIDO     CUIL      ID \n");
+	printf("        NOMBRE      APELLIDO     CUIL      ID ");
 
 	mostrarUnContribuyente(array[posicion]); // muestra el estudiante que quieres cambiar
 	utn_getNumero(&datoACambiar, "\n Ingrese una opcion del 1 al 3 \n1- modificar nombre \n2- modificar apellido \n3- modificar cuil ", "\n Error, ingrese nuevamente", 1, 3, 3);
