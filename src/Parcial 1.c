@@ -17,7 +17,8 @@
 #include "contribuyente.h"
 #include "recaudacion.h"
 
-#define CANTIDADCONTRIBUYENTES 3
+#define CANTIDADCONTRIBUYENTES 50
+#define CANTIDADRECAUDACION 50
 
 
 
@@ -26,13 +27,14 @@ int main(void) {
 	setbuf(stdout, NULL); //ESTO VA SIEMPRE
 
 	estructuraContribuyente contribuyente[CANTIDADCONTRIBUYENTES];
-
+	//estructuraRecaudacion  recaudacion[CANTIDADRECAUDACION];
 	inicializarEstructuraContribuyente(contribuyente, 3);
 
 
 	int respuesta = 0;
     int contadorDeLegajo = 1000;
     int seIngresoUnContribuyente= -1;
+    int contadorIdRecaudaciones = 100;
 
 		do {
 		mostrarMenu(&respuesta);
@@ -64,7 +66,7 @@ int main(void) {
 				seIngresoUnContribuyente = buscarLibre(contribuyente, CANTIDADCONTRIBUYENTES);
 				if (seIngresoUnContribuyente > 0){
 
-				borrarUnContribuyente(contribuyente, CANTIDADCONTRIBUYENTES);
+				borrarUnContribuyente(recaudacion, CANTIDADCONTRIBUYENTES);
 
 				} else{
 
@@ -74,6 +76,8 @@ int main(void) {
 				break;
 
 			case 4: //Recaudación
+				//agregarRecaudacion(recaudacion, CANTIDADRECAUDACION, recaudacion, int CANTIDADCONTRIBUYENTES, contadorIdRecaudaciones)
+
 				break;
 
 			case 5: //Refinanciar Recaudación

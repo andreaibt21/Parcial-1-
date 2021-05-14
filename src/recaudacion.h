@@ -18,11 +18,11 @@ typedef struct {
 	int	mes;
 	int	tipo ;
 	float importe;
-	int	idrecaudacion ;
+	int	idRecaudacion ;
 	int	isEmpty;
 } estructuraRecaudacion;
 
-
+int agregarRecaudacion(estructuraRecaudacion arrayReca[], int cantidadReca, estructuraContribuyente arrayContri[], int cantidadContri, int* contadorIdRecaudaciones);
 
 
 
