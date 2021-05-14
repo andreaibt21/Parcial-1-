@@ -153,7 +153,7 @@ int utn_getCharAceptar(char *variableChar, char *mensaje, char *mensajeError, in
 
 int utn_getCuil(char auxiliar[], char *mensaje, char *mensajeError, int reintentos){
 	int retorno = -1;
-	char bufferString[15];
+	char bufferString[14];
 	if(auxiliar != NULL && mensaje != NULL && mensajeError != NULL && reintentos>0)
 	{
 		do
@@ -161,7 +161,7 @@ int utn_getCuil(char auxiliar[], char *mensaje, char *mensajeError, int reintent
 			printf("%s", mensaje);
 			scanf("%s", bufferString);
 
-			if(strlen(bufferString) < 15){
+			if(strlen(bufferString) < 14){
 
 				strcpy(auxiliar, bufferString);
 				retorno = 0;
@@ -183,6 +183,36 @@ int utn_getCuil(char auxiliar[], char *mensaje, char *mensajeError, int reintent
 
 
 
+
+/*
+void utn_getChar(char *variableChar, char *mensaje, char *mensajeError,int minimo, int maximo, int reintentos){
+
+	char bufferChar;
+	if(variableChar != NULL && mensaje != NULL && mensajeError != NULL && minimo <= maximo && reintentos>=0)
+	{
+		do
+		{
+			printf("%s \n", mensaje);
+			fflush(stdin);
+			scanf("%c", &bufferChar);
+
+			if(bufferChar >= minimo && bufferChar <= maximo)
+			{
+				*variableChar = bufferChar;
+
+				break;
+			}
+			else
+			{
+				printf("%s", mensajeError);
+				reintentos--;
+			}
+		}while(reintentos>=0);
+	}
+
+}
+
+*/
 
 /*
 int promediarNotas(float *promedio, int nota1, int nota2){

@@ -28,5 +28,7 @@ int utn_getCharAceptar(char *variableChar, char *mensaje, char *mensajeError, in
 
 
 
+//void utn_getChar(char *variableChar, char *mensaje, char *mensajeError,int minimo, int maximo, int reintentos);
+//int promediarNotas(float *promedio, int nota1, int nota2);
 //int mostrarSiCargoBien(estructuraEmpleados array[], int tamano);
 #endif /* UTN_H_ */

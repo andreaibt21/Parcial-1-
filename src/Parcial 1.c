@@ -21,9 +21,6 @@
 
 
 
-//void utn_getChar(char *variableChar, char *mensaje, char *mensajeError,int minimo, int maximo, int reintentos);
-//int promediarNotas(float *promedio, int nota1, int nota2);
-
 /// ----------------------------------          MAIN          -----------------------------------------
 int main(void) {
 	setbuf(stdout, NULL); //ESTO VA SIEMPRE
@@ -44,19 +41,21 @@ int main(void) {
 
 			case 1: //AGREGAR UN contribuyente
 
+
 				agregarUnContribuyente( contribuyente, CANTIDADCONTRIBUYENTES, &contadorDeLegajo );
 
 				break;
 			case 2:  // MODIFICAR UN contribuyente
 
-			seIngresoUnContribuyente = buscarLibre(contribuyente, CANTIDADCONTRIBUYENTES);
+			    seIngresoUnContribuyente = buscarLibre(contribuyente, CANTIDADCONTRIBUYENTES);
 				if (seIngresoUnContribuyente > 0){
-					//modificarAlumno(alumno, CANTIDADALUMNOS );
 
-					printf("\n // MODIFICAR UN ALUMNO");
+					printf("\n ********  Modificar el contribuyente  ******** \n");
+					modificarUnContribuyente(contribuyente, CANTIDADCONTRIBUYENTES);
+
 				} else{
 
-					printf("\n Error, debe de ingresar al menos un empleado");
+					printf("\n Error, debe de ingresar al menos un contibuyente");
 				}
 
 				break;
@@ -69,7 +68,7 @@ int main(void) {
 
 				} else{
 
-					printf("\n Error, debe de ingresar al menos un empleado");
+					printf("\n Error, debe de ingresar al menos  un contibuyente");
 				}
 
 				break;
@@ -93,15 +92,16 @@ int main(void) {
 
 				} else{
 
-					printf("\n Error, debe de ingresar al menos un empleado");
+					printf("\n Error, debe de ingresar al menos  un contibuyente");
 				}
 				break;
 
 			case 8: // Imprimir Recaudación
+
 				break;
 
 			case 9:
-
+				printf("\n **********   Usted ha salido    *********");
 			break;
 
 
@@ -115,43 +115,3 @@ int main(void) {
 
 
 
-
-
-
-
-// INGRESO - ALTA
-
-
-/*
-void utn_getChar(char *variableChar, char *mensaje, char *mensajeError,int minimo, int maximo, int reintentos){
-
-	char bufferChar;
-	if(variableChar != NULL && mensaje != NULL && mensajeError != NULL && minimo <= maximo && reintentos>=0)
-	{
-		do
-		{
-			printf("%s \n", mensaje);
-			fflush(stdin);
-			scanf("%c", &bufferChar);
-
-			if(bufferChar >= minimo && bufferChar <= maximo)
-			{
-				*variableChar = bufferChar;
-
-				break;
-			}
-			else
-			{
-				printf("%s", mensajeError);
-				reintentos--;
-			}
-		}while(reintentos>=0);
-	}
-
-}
-
-*/
-
-
-
-//3-Listar
