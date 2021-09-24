@@ -8,10 +8,7 @@
 
 #ifndef UTN_H_
 #define UTN_H_
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
+
 
 
 int utn_getNumero(int *resultado, char *mensaje, char *mensajeError, int minimo, int maximo, int reintentos);
@@ -26,9 +23,10 @@ int utn_getString(char auxiliar[], char *mensaje, char *mensajeError, int reinte
 
 int utn_getCharAceptar(char *variableChar, char *mensaje, char *mensajeError, int reintentos);
 
+int utn_getSoN(char *variableChar, char *mensaje, char *mensajeError, int reintentos);
 
 
 //void utn_getChar(char *variableChar, char *mensaje, char *mensajeError,int minimo, int maximo, int reintentos);
 //int promediarNotas(float *promedio, int nota1, int nota2);
-//int mostrarSiCargoBien(estructuraEmpleados array[], int tamano);
+
 #endif /* UTN_H_ */

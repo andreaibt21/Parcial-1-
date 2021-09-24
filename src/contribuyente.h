@@ -17,29 +17,48 @@
 
 	typedef struct {
 	char  nombre[50];
-	char	apellido[50];
-	char	cuil[15];
+	char  apellido[50];
+	char  cuil[15];
 	int	idContribuyente;
 	int	isEmpty;
 
 	}estructuraContribuyente;
 
+	/**
+	 * \brief inicializa la Estructura Contribuyente en 1;
+	 * \param array estructura que se va a inicializar
+	 * \param tamano longitud del array
+	 * \return -1 si hubo un error, 0 si no hubo error
+	 */
 
 	int inicializarEstructuraContribuyente(estructuraContribuyente array[], int tamano);
 
+	/**
+	 * \brief busca una posicion libre en el array de estructuras
+	 * \param array estructura en donde se va a buscar la posicion
+	 * \param tamano longitud del array
+	 * \return retorna la posicion libre encontrada
+	 */
 	int buscarLibre(estructuraContribuyente array[], int tamano);
+	/**
+	 * \brief Muestra uncontribuyente de la Estructura Contribuyente
+	 * \param contribuyente estructura que se a usar
+	 * \return void
 
-	int mostrarUnContribuyente( estructuraContribuyente unEmpleado);
+	 */
+	void mostrarUnContribuyente(  estructuraContribuyente contribuyente);
 
-	int mostrarTodosLosContribuyentes(estructuraContribuyente array[], int tamano);
+	void mostrarTodosLosContribuyentes(estructuraContribuyente array[], int tamano);
 
 	int agregarUnContribuyente( estructuraContribuyente   array[], int tamanoDeArray, int *contadorDeLegajo );
-
-	int modificarUnContribuyente( estructuraContribuyente   array[], int tamano);
 
 	int buscarLegajo(estructuraContribuyente array[], int tamanoDeArray);
 
 	int borrarUnContribuyente(estructuraContribuyente array[], int tamano);
+
+	int modificarUnContribuyente( estructuraContribuyente   array[], int tamano);
+
+	int estaVaciaLaEstructuraContribuyentes( estructuraContribuyente   array[], int tamanoDeArray);
 
 
 

@@ -13,28 +13,28 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "utn.h"
 #include "contribuyente.h"
+#include "utn.h"
 #include "recaudacion.h"
+#include "validacion.h"
 
 #define CANTIDADCONTRIBUYENTES 50
 #define CANTIDADRECAUDACION 50
 
-
-
 /// ----------------------------------          MAIN          -----------------------------------------
 int main(void) {
-	setbuf(stdout, NULL); //ESTO VA SIEMPRE
+	setbuf(stdout, NULL);
 
 	estructuraContribuyente contribuyente[CANTIDADCONTRIBUYENTES];
-	//estructuraRecaudacion  recaudacion[CANTIDADRECAUDACION];
-	inicializarEstructuraContribuyente(contribuyente, 3);
-
+	estructuraRecaudacion  recaudacion[CANTIDADRECAUDACION];
+	inicializarEstructuraContribuyente(contribuyente, CANTIDADCONTRIBUYENTES);
+	inicializarEstructuraRecaudacion(recaudacion, CANTIDADRECAUDACION);
 
 	int respuesta = 0;
-    int contadorDeLegajo = 1000;
-    int seIngresoUnContribuyente= -1;
-    int contadorIdRecaudaciones = 100;
+    int contadorDeIDContribuyente = 1000;
+    int contadorDeIDRecaudacion = 100;
+
+
 
 		do {
 		mostrarMenu(&respuesta);
@@ -42,77 +42,65 @@ int main(void) {
 		switch (respuesta) {
 
 			case 1: //AGREGAR UN contribuyente
-
-
-				agregarUnContribuyente( contribuyente, CANTIDADCONTRIBUYENTES, &contadorDeLegajo );
-
+			agregarUnContribuyente( contribuyente, CANTIDADCONTRIBUYENTES, &contadorDeIDContribuyente );
 				break;
 			case 2:  // MODIFICAR UN contribuyente
-
-			    seIngresoUnContribuyente = buscarLibre(contribuyente, CANTIDADCONTRIBUYENTES);
-				if (seIngresoUnContribuyente > 0){
-
-					printf("\n ********  Modificar el contribuyente  ******** \n");
+				if (estaVaciaLaEstructuraContribuyentes( contribuyente, CANTIDADCONTRIBUYENTES) != 0){
 					modificarUnContribuyente(contribuyente, CANTIDADCONTRIBUYENTES);
-
-				} else{
-
-					printf("\n Error, debe de ingresar al menos un contibuyente");
+				} else{	printf("\n Error, debe de ingresar al menos un contibuyente");
 				}
 
 				break;
 			case 3: // ELIMINAR UN contribuyente
-
-				seIngresoUnContribuyente = buscarLibre(contribuyente, CANTIDADCONTRIBUYENTES);
-				if (seIngresoUnContribuyente > 0){
-
-				borrarUnContribuyente(recaudacion, CANTIDADCONTRIBUYENTES);
-
-				} else{
-
-					printf("\n Error, debe de ingresar al menos  un contibuyente");
+				if (estaVaciaLaEstructuraContribuyentes( contribuyente, CANTIDADCONTRIBUYENTES)!= 0){
+					borrarUnContribuyenteConRecaudaciones(contribuyente, CANTIDADCONTRIBUYENTES, recaudacion, CANTIDADCONTRIBUYENTES);
+				} else{	printf("\n Error, debe de ingresar al menos  un contibuyente");
 				}
 
 				break;
 
 			case 4: //Recaudación
-				//agregarRecaudacion(recaudacion, CANTIDADRECAUDACION, recaudacion, int CANTIDADCONTRIBUYENTES, contadorIdRecaudaciones)
-
+				if (estaVaciaLaEstructuraContribuyentes( contribuyente, CANTIDADCONTRIBUYENTES)!= 0){
+						agregarRecaudacion(recaudacion, CANTIDADRECAUDACION, contribuyente, CANTIDADCONTRIBUYENTES, &contadorDeIDRecaudacion);
+				} else{	printf("\n Error, debe de ingresar al menos  un contribuyente");
+				};
 				break;
 
 			case 5: //Refinanciar Recaudación
-						break;
+				if (estaVaciaLaEstructuraContribuyentes( contribuyente, CANTIDADCONTRIBUYENTES)!= 0){
+				 cambiarElEstadoDeRecaudacion(contribuyente, CANTIDADCONTRIBUYENTES, recaudacion, CANTIDADRECAUDACION,1);
+				} else{
+					printf("\n Error, debe de ingresar al menos  un contribuyente");
+				};
+				break;
 
 			case 6: //Saldar Recaudación
-			  break;
-
+				if (estaVaciaLaEstructuraContribuyentes( contribuyente, CANTIDADCONTRIBUYENTES)!= 0){
+				cambiarElEstadoDeRecaudacion(contribuyente, CANTIDADCONTRIBUYENTES, recaudacion, CANTIDADRECAUDACION,2);
+				} else{	printf("\n Error, debe de ingresar al menos  un contribuyente");							};
+				break;
 
 
 			case 7: // MOSTRAR contribuyentes
-
-				seIngresoUnContribuyente = buscarLibre(contribuyente, CANTIDADCONTRIBUYENTES);
-				if (seIngresoUnContribuyente > 0){
-				mostrarTodosLosContribuyentes(contribuyente, CANTIDADCONTRIBUYENTES);
-
-				} else{
-
-					printf("\n Error, debe de ingresar al menos  un contibuyente");
+				if (estaVaciaLaEstructuraContribuyentes( contribuyente, CANTIDADCONTRIBUYENTES)){
+					mostrarRecaudacionesYContibuyentes(contribuyente, CANTIDADCONTRIBUYENTES, recaudacion, CANTIDADRECAUDACION);
+				} else{	printf("\n Error, debe de ingresar al menos  un contibuyente");
 				}
 				break;
 
-			case 8: // Imprimir Recaudación
-
+			case 8: // Imprimir Recaudaciones
+				if (estaVaciaLaEstructuraContribuyentes( contribuyente, CANTIDADCONTRIBUYENTES)){
+			mostrarRecaudacionesSaldadas(contribuyente, CANTIDADCONTRIBUYENTES, recaudacion, CANTIDADRECAUDACION);
+				} else{	printf("\n Error, debe de ingresar al menos  un contibuyente");
+				}
 				break;
 
 			case 9:
 				printf("\n **********   Usted ha salido    *********");
 			break;
-
-
-
 		}
 
-	} while (respuesta != 5);
+	} while (respuesta != 9);
 
 	return EXIT_SUCCESS;
 };
